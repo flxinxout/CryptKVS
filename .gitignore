@@ -1,0 +1,7 @@
+**/*~
+**/*.o
+**/*.h.gch
+**/*.idea
+**/*.depend
+**/*.DS_STORE
+done/cryptkvs

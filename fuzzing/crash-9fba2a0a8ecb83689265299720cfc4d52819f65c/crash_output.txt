@@ -1,0 +1,68 @@
+/mnt/d/Programming/POS/pps22-dev/working-rendu02-1M/dedup-crashes/crash-9fba2a0a8ecb83689265299720cfc4d52819f65c
+/mnt/d/Programming/POS/pps22-dev/projects-rendu02/group_b7d041/./done/ckvs_local.c:249:55: runtime error: unsigned integer overflow: 18446744073709551615 + 1 cannot be represented in type 'unsigned long'
+SUMMARY: UndefinedBehaviorSanitizer: undefined-behavior /mnt/d/Programming/POS/pps22-dev/projects-rendu02/group_b7d041/./done/ckvs_local.c:249:55 in 
+=================================================================
+==15100==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x602000006931 at pc 0x7fe7a634cd1e bp 0x7fffc0512fb0 sp 0x7fffc0512780
+WRITE of size 41 at 0x602000006931 thread T0
+    #0 0x7fe7a634cd1d in fread (/mnt/d/Programming/POS/pps22-dev/working-rendu02-1M/build/group_b7d041/fuzz-target+0x83d1d) (BuildId: 48755f51daa51b3dc56034c843d504fa94737c6e)
+    #1 0x7fe7a6408561 in do_get /mnt/d/Programming/POS/pps22-dev/projects-rendu02/group_b7d041/./done/ckvs_local.c:252:24
+    #2 0x7fe7a6405ac5 in ckvs_local_getset /mnt/d/Programming/POS/pps22-dev/projects-rendu02/group_b7d041/./done/ckvs_local.c:214:20
+    #3 0x7fe7a6404f99 in ckvs_local_get /mnt/d/Programming/POS/pps22-dev/projects-rendu02/group_b7d041/./done/ckvs_local.c:88:20
+    #4 0x7fe7a63f83cd in ckvs_do_one_cmd /mnt/d/Programming/POS/pps22-dev/projects-rendu02/group_b7d041/./done/cryptkvs.c:83:24
+    #5 0x7fe7a63f5b79 in LLVMFuzzerTestOneInput /mnt/d/Programming/POS/pps22-dev/resources/cs212-2022/fuzz-target.c:59:13
+    #6 0x7fe7a6317ed3 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) (/mnt/d/Programming/POS/pps22-dev/working-rendu02-1M/build/group_b7d041/fuzz-target+0x4eed3) (BuildId: 48755f51daa51b3dc56034c843d504fa94737c6e)
+    #7 0x7fe7a630229f in fuzzer::RunOneTest(fuzzer::Fuzzer*, char const*, unsigned long) (/mnt/d/Programming/POS/pps22-dev/working-rendu02-1M/build/group_b7d041/fuzz-target+0x3929f) (BuildId: 48755f51daa51b3dc56034c843d504fa94737c6e)
+    #8 0x7fe7a6307fa6 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) (/mnt/d/Programming/POS/pps22-dev/working-rendu02-1M/build/group_b7d041/fuzz-target+0x3efa6) (BuildId: 48755f51daa51b3dc56034c843d504fa94737c6e)
+    #9 0x7fe7a63315c2 in main (/mnt/d/Programming/POS/pps22-dev/working-rendu02-1M/build/group_b7d041/fuzz-target+0x685c2) (BuildId: 48755f51daa51b3dc56034c843d504fa94737c6e)
+    #10 0x7fe7a58a4082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
+    #11 0x7fe7a62fca8d in _start (/mnt/d/Programming/POS/pps22-dev/working-rendu02-1M/build/group_b7d041/fuzz-target+0x33a8d) (BuildId: 48755f51daa51b3dc56034c843d504fa94737c6e)
+
+DEDUP_TOKEN: fread--do_get--ckvs_local_getset--ckvs_local_get--ckvs_do_one_cmd--LLVMFuzzerTestOneInput--fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long)--fuzzer::RunOneTest(fuzzer::Fuzzer*, char const*, unsigned long)--fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long))--main--__libc_start_main--_start
+0x602000006931 is located 0 bytes to the right of 1-byte region [0x602000006930,0x602000006931)
+allocated by thread T0 here:
+    #0 0x7fe7a63b3e08 in __interceptor_calloc (/mnt/d/Programming/POS/pps22-dev/working-rendu02-1M/build/group_b7d041/fuzz-target+0xeae08) (BuildId: 48755f51daa51b3dc56034c843d504fa94737c6e)
+    #1 0x7fe7a6408259 in do_get /mnt/d/Programming/POS/pps22-dev/projects-rendu02/group_b7d041/./done/ckvs_local.c:249:29
+    #2 0x7fe7a6405ac5 in ckvs_local_getset /mnt/d/Programming/POS/pps22-dev/projects-rendu02/group_b7d041/./done/ckvs_local.c:214:20
+    #3 0x7fe7a6404f99 in ckvs_local_get /mnt/d/Programming/POS/pps22-dev/projects-rendu02/group_b7d041/./done/ckvs_local.c:88:20
+    #4 0x7fe7a63f83cd in ckvs_do_one_cmd /mnt/d/Programming/POS/pps22-dev/projects-rendu02/group_b7d041/./done/cryptkvs.c:83:24
+    #5 0x7fe7a63f5b79 in LLVMFuzzerTestOneInput /mnt/d/Programming/POS/pps22-dev/resources/cs212-2022/fuzz-target.c:59:13
+    #6 0x7fe7a6317ed3 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) (/mnt/d/Programming/POS/pps22-dev/working-rendu02-1M/build/group_b7d041/fuzz-target+0x4eed3) (BuildId: 48755f51daa51b3dc56034c843d504fa94737c6e)
+    #7 0x7fe7a630229f in fuzzer::RunOneTest(fuzzer::Fuzzer*, char const*, unsigned long) (/mnt/d/Programming/POS/pps22-dev/working-rendu02-1M/build/group_b7d041/fuzz-target+0x3929f) (BuildId: 48755f51daa51b3dc56034c843d504fa94737c6e)
+    #8 0x7fe7a6307fa6 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) (/mnt/d/Programming/POS/pps22-dev/working-rendu02-1M/build/group_b7d041/fuzz-target+0x3efa6) (BuildId: 48755f51daa51b3dc56034c843d504fa94737c6e)
+    #9 0x7fe7a63315c2 in main (/mnt/d/Programming/POS/pps22-dev/working-rendu02-1M/build/group_b7d041/fuzz-target+0x685c2) (BuildId: 48755f51daa51b3dc56034c843d504fa94737c6e)
+    #10 0x7fe7a58a4082 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x24082) (BuildId: 1878e6b475720c7c51969e69ab2d276fae6d1dee)
+
+DEDUP_TOKEN: __interceptor_calloc--do_get--ckvs_local_getset--ckvs_local_get--ckvs_do_one_cmd--LLVMFuzzerTestOneInput--fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long)--fuzzer::RunOneTest(fuzzer::Fuzzer*, char const*, unsigned long)--fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long))--main--__libc_start_main
+SUMMARY: AddressSanitizer: heap-buffer-overflow (/mnt/d/Programming/POS/pps22-dev/working-rendu02-1M/build/group_b7d041/fuzz-target+0x83d1d) (BuildId: 48755f51daa51b3dc56034c843d504fa94737c6e) in fread
+Shadow bytes around the buggy address:
+  0x0c047fff8cd0: fa fa fd fd fa fa fd fd fa fa fd fd fa fa fd fa
+  0x0c047fff8ce0: fa fa fd fa fa fa fd fa fa fa fd fd fa fa fd fd
+  0x0c047fff8cf0: fa fa fd fd fa fa fd fa fa fa fd fd fa fa fd fd
+  0x0c047fff8d00: fa fa fd fd fa fa fd fa fa fa fd fa fa fa 00 01
+  0x0c047fff8d10: fa fa 00 04 fa fa 04 fa fa fa 07 fa fa fa 02 fa
+=>0x0c047fff8d20: fa fa fd fd fa fa[01]fa fa fa fa fa fa fa fa fa
+  0x0c047fff8d30: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c047fff8d40: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c047fff8d50: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c047fff8d60: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c047fff8d70: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==15100==ABORTING

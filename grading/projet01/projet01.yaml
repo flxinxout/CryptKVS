@@ -1,0 +1,87 @@
+- ckvs_io.h:    4 # max 4, 
+- ckvs_io.c: # NE PAS REMPLIR CETTE LIGNE
+  - ckvs_write_entry_to_disk: # NE PAS REMPLIR CETTE LIGNE
+      offset:                     2 # max 2, 
+      fseek:                      2 # max 2, 
+      fwrite:                     2 # max 2, 
+      gestions des erreurs:       2 # max 2, 
+  - count_one_bits: # NE PAS REMPLIR CETTE LIGNE
+      modularisation:       2 # max 2, 
+      corps:                5 # max 5, 
+  - ckvs_open: # NE PAS REMPLIR CETTE LIGNE
+      tests arguments:                1 # max 1, 
+      open + test erreur:             2 # max 2, 
+      read header + test erreur:      2 # max 2, 
+      check header + test erreur:     5 # max 5, 
+      read entries + test erreur:     2 # max 2, 
+  - ckvs_close:                     2.5 # max 2.5, 
+  - ckvs_find_entry: # NE PAS REMPLIR CETTE LIGNE
+      tests arguments:                1.5 # max 1.5, 
+      boucle:                         1 # max 1, 
+      key:                            3 # max 3, 
+      SHA:                            3 # max 3, 
+      retours:                        3 # max 3, 
+  - ckvs_write_encrypted_value: # NE PAS REMPLIR CETTE LIGNE
+      tests arguments:                   1.5 # max 1.5, 
+      fseek + test erreur:               2 # max 2, 
+      offset:                            2 # max 2, 
+      fwrite content + test erreur:      2 # max 2, 
+      set + write entry:                 3 # max 3, 
+  - read_value_file_content: # NE PAS REMPLIR CETTE LIGNE
+      tests arguments:                1.5 # max 1.5, 
+      open + test erreur:             2 # max 2, 
+      file size + test erreur:        3 # max 3, 
+      lecture de la valeur:           12 # max 12, 
+      close:                          1 # max 1, 
+- ckvs_utils.c: # NE PAS REMPLIR CETTE LIGNE
+  - hex_encode:               2.5 # max 3, ratio ne devrait pas dépendre de SHA256_PRINTED_STRLEN, c'est plutôt dans l'autre sens: puisque chaque byte donne 2 charactères, on définit SHA256_PRINTED_STRLEN.
+  - SHA256_to_string:         1 # max 1, 
+  - ckvs_cmp_sha:             2 # max 2, 
+  - print_X: # NE PAS REMPLIR CETTE LIGNE
+      print_SHA:            5 # max 5, 
+      print_header:         2 # max 2, 
+      print_entry:          2 # max 2, 
+- ckvs_crypto.c: # NE PAS REMPLIR CETTE LIGNE
+      tests arguments:              1.5 # max 1.5, 
+      concaténation:                10 # max 10, 
+      SHA:                          2 # max 2, 
+      HMAC key:                     3 # max 3, 
+      HMAC C1:                      3 # max 3, 
+      modularisation:               0 # max 2, Pas fait.
+- ckvs_local.c: # NE PAS REMPLIR CETTE LIGNE
+  - ckvs_local_stats: # NE PAS REMPLIR CETTE LIGNE
+      tests arguments:              0.5 # max 0.5, 
+      open + test erreur:           2 # max 2, 
+      print header:                 1 # max 1, 
+      print valid entries:          4 # max 4, 
+      close:                        1 # max 1, 
+  - ckvs_local_getset: # NE PAS REMPLIR CETTE LIGNE
+      tests arguments:                    1.5 # max 1.5, 
+      open + test erreur:                 2 # max 2, 
+      encrypt + test erreur:              3 # max 3, 
+      find entry + test erreur:           3 # max 3, 
+      generate C2 + test erreur:          3 # max 3, 
+      compute masterkey + test erreur:    3 # max 3, 
+  - do_get: # NE PAS REMPLIR CETTE LIGNE
+      read encrypted value:         4 # max 4, calloc prend les arguments dans l'autre sens, mais ça marche pour ce cas-ci (pour des raisons d'alignement).
+      decrypt:                      3 # max 3, 
+      print:                        0.5 # max 1, Manque \n après %s.
+      close:                        1 # max 1,
+  - do_set: # NE PAS REMPLIR CETTE LIGNE
+      encrypt:                      4 # max 4, 
+      write:                        1.5 # max 1.5, 
+      close:                        1 # max 1,
+  - ckvs_local_get:             2 # max 2, 
+  - ckvs_local_set: # NE PAS REMPLIR CETTE LIGNE
+      tests arguments:               2 # max 2, 
+      read value + test erreur:      2 # max 2, 
+      call + free:                   3 # max 3, 
+- cryptkvs.c: # NE PAS REMPLIR CETTE LIGNE
+  - help/usage:             1 # max 1, 
+  - ckvs_do_one_cmd: # NE PAS REMPLIR CETTE LIGNE
+      argc check:           1 # max 1,
+      stat:                 1 # max 1,
+      get:                  3 # max 3,
+      set:                  3 # max 3,
+- style:          2 # max 2, min -2, (normal = 0), Code exemplaire. Continuez comme ça :)
+- bonus/malus:    3 # max 5, min -5, (normal = 0), +Documentation très détaillée, bravo. +Utilisation des macros pour la gestion de l'erreur.
